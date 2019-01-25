@@ -26,6 +26,7 @@ public class MainMenuController : MonoBehaviour
     public void SwitchToCredits()
     {
         //TODO implement credits screen
+        SceneManager.LoadScene("CreditsScreen");
     }
 
     public void SwitchToSplash()
