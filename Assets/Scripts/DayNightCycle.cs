@@ -11,6 +11,7 @@ public class DayNightCycle : MonoBehaviour
     //bool morning;
     [Header("Sun")]
     public GameObject sun;
+    float sunHeight;
     public AnimationCurve sunXPos;
     public AnimationCurve sunYPos;
     public float sunCentrePoint;
@@ -43,8 +44,8 @@ public class DayNightCycle : MonoBehaviour
         float time = timeOfDay / dayLength;
         #region Sun Position
         float sunX = ((sunXPos.Evaluate(time) * 2) - 1) * sunRadius;
-        float sunY = ((sunYPos.Evaluate(time) * 2) - 1) * sunRadius;
-        sun.transform.position = (Vector3.right * sunX) + (Vector3.up * (sunY + sunCentrePoint));
+        sunHeight = ((sunYPos.Evaluate(time) * 2) - 1) * sunRadius;
+        sun.transform.position = (Vector3.right * sunX) + (Vector3.up * (sunHeight + sunCentrePoint));
         #endregion
         #region Sky Color
         if (time > sunSetPoint && time < (sunSetPoint + sunSetStartLength))
