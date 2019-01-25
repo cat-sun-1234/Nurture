@@ -8,10 +8,23 @@ public class DayNightCycle : MonoBehaviour
     int days = 1;
     public float dayLength;
     //bool morning;
-    public float SunSetPoint;
+    [Header("Sun")]
+    public GameObject sun;
+    public AnimationCurve sunXPos;
+    public AnimationCurve sunYPos;
+    public float sunBottom;
+    public float sunTop;
+    [Header("Sky")]
+    [Range(0, 0.5f)]
+    public float sunSetPoint;
+    [Range(0, 0.25f)]
+    public float sunSetStartLength;
+    [Range(0, 0.25f)]
+    public float sunSetEndLength;
     public float timeSpeed;
 
-    public Renderer display;
+    public SpriteRenderer sky;
+
 
     public Color day;
     public Color sunset;
@@ -30,24 +43,34 @@ public class DayNightCycle : MonoBehaviour
     }
     void Transition()
     {
-        //if(morning)
-        //{
-        if (timeOfDay < dayLength / 4)
+        float time = timeOfDay / dayLength;
+        #region Sun Position
+        float sunX = ((sunXPos.Evaluate(time) * ((sunTop + sunBottom) / 2)) - ((sunTop + sunBottom) / 4));
+        float sunY = ((sunYPos.Evaluate(time) * sunTop) - sunBottom);
+        sun.transform.position = (Vector3.right * sunX) + (Vector3.up * sunY);
+        #endregion
+        #region Sky Color
+        if (time > sunSetPoint && time < (sunSetPoint + sunSetStartLength))
         {
-            display.material.color = Color.Lerp(night, sunset, (timeOfDay * 4) / dayLength);
+            float p = Mathf.InverseLerp(sunSetPoint, sunSetPoint + sunSetStartLength, time);
+            sky.color = Color.Lerp(night, sunset, p);
         }
-        else if (timeOfDay < 2 * dayLength / 4)
+        else if (time > (sunSetPoint + sunSetStartLength) && time < (sunSetPoint + sunSetStartLength + sunSetEndLength))
         {
-            display.material.color = Color.Lerp(sunset, day, ((timeOfDay * 4) - dayLength) / dayLength);
+            float p = Mathf.InverseLerp((sunSetPoint + sunSetStartLength), (sunSetPoint + sunSetStartLength + sunSetEndLength), time);
+            sky.color = Color.Lerp(sunset, day, p);
         }
-        else if (timeOfDay < 3 * dayLength / 4)
+        else if (time > 1 - (sunSetPoint + sunSetStartLength + sunSetEndLength) && time < 1 - (sunSetPoint + sunSetStartLength))
         {
-            display.material.color = Color.Lerp(day, sunset, ((timeOfDay * 4) - (dayLength * 2)) / dayLength);
+            float p = Mathf.InverseLerp(1 - (sunSetPoint + sunSetStartLength + sunSetEndLength), 1 - (sunSetPoint + sunSetStartLength), time);
+            sky.color = Color.Lerp(day, sunset, p);
         }
-        else
+        else if (time > 1 - (sunSetPoint + sunSetStartLength) && time < 1 - sunSetPoint)
         {
-            display.material.color = Color.Lerp(sunset, night, ((timeOfDay * 4) - (dayLength * 3)) / dayLength);
+            float p = Mathf.InverseLerp(1 - (sunSetPoint + sunSetStartLength), 1 - sunSetPoint, time);
+            sky.color = Color.Lerp(sunset, night, p);
         }
+        #endregion
         //}
     }
 }
