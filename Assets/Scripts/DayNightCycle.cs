@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
 {
+    public float timeSpeed;
     float timeOfDay;
     int days = 1;
     public float dayLength;
@@ -12,20 +13,16 @@ public class DayNightCycle : MonoBehaviour
     public GameObject sun;
     public AnimationCurve sunXPos;
     public AnimationCurve sunYPos;
-    public float sunBottom;
-    public float sunTop;
+    public float sunCentrePoint;
+    public float sunRadius;
     [Header("Sky")]
+    public SpriteRenderer sky;
     [Range(0, 0.5f)]
     public float sunSetPoint;
     [Range(0, 0.25f)]
     public float sunSetStartLength;
     [Range(0, 0.25f)]
     public float sunSetEndLength;
-    public float timeSpeed;
-
-    public SpriteRenderer sky;
-
-
     public Color day;
     public Color sunset;
     public Color night;
@@ -45,9 +42,9 @@ public class DayNightCycle : MonoBehaviour
     {
         float time = timeOfDay / dayLength;
         #region Sun Position
-        float sunX = ((sunXPos.Evaluate(time) * ((sunTop + sunBottom) / 2)) - ((sunTop + sunBottom) / 4));
-        float sunY = ((sunYPos.Evaluate(time) * sunTop) - sunBottom);
-        sun.transform.position = (Vector3.right * sunX) + (Vector3.up * sunY);
+        float sunX = ((sunXPos.Evaluate(time) * 2) - 1) * sunRadius;
+        float sunY = ((sunYPos.Evaluate(time) * 2) - 1) * sunRadius;
+        sun.transform.position = (Vector3.right * sunX) + (Vector3.up * (sunY + sunCentrePoint));
         #endregion
         #region Sky Color
         if (time > sunSetPoint && time < (sunSetPoint + sunSetStartLength))

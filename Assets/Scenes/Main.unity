@@ -425,8 +425,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996358005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.18, y: -4.03, z: 0}
-  m_LocalScale: {x: 7.49, y: 2.51, z: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 7.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd711403209d0b4cb01f3f4506569e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeSpeed: 1
   dayLength: 24
   sun: {fileID: 291714514}
   sunXPos:
@@ -537,13 +538,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  sunBottom: 12
-  sunTop: 8
-  sunSetPoint: 0.15
-  sunSetStartLength: 0.1
-  sunSetEndLength: 0.1
-  timeSpeed: 1
+  sunCentrePoint: 0
+  sunRadius: 6
   sky: {fileID: 702035430}
+  sunSetPoint: 0.125
+  sunSetStartLength: 0.0625
+  sunSetEndLength: 0.0625
   day: {r: 0, g: 1, b: 1, a: 1}
   sunset: {r: 1, g: 0.5019608, b: 0, a: 1}
   night: {r: 0, g: 0, b: 0, a: 1}
