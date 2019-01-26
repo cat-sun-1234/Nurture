@@ -13,11 +13,15 @@ public class Plant : MonoBehaviour
         if (waterLevel <= 0.0f)
         {
             this.GetComponent<Animator>().SetBool("isWithering", true);
-            //respawn code
-            GameObject newPlant = Object.Instantiate(Resources.Load("Prefabs/Plant"), GameObject.Find("PlantSpawnPoint").transform) as GameObject;
-            newPlant.transform.parent = null;
-            GameObject.Find("Button").GetComponent<WateringController>().RespawnPlant(newPlant); //sets new plant for water controller
-            Destroy(this.gameObject);
         }
+
+    }
+    public void SpawnPlant()
+    {
+        //respawn code
+        GameObject newPlant = Object.Instantiate(Resources.Load("Prefabs/Plant"), GameObject.Find("PlantSpawnPoint").transform) as GameObject;
+        newPlant.transform.parent = null;
+        GameObject.Find("Button").GetComponent<WateringController>().RespawnPlant(newPlant); //sets new plant for water controller
+        Destroy(this.gameObject);
     }
 }
