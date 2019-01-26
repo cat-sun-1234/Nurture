@@ -649,7 +649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &737378738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1146,7 +1146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1289664040
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867724750}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1567,7 +1567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   water_meter: {fileID: 115151776}
-  plant: {fileID: 7800928159967532603, guid: 64ecedb56801ee14dab057bf1edee801, type: 3}
+  plant: {fileID: 1897675956}
   debug: {fileID: 2044995487}
   fastGrow: 0.3
   slowGrow: 0.1
@@ -1595,6 +1595,12 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &1897675956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7800928159967532603, guid: 64ecedb56801ee14dab057bf1edee801,
+    type: 3}
+  m_PrefabInstance: {fileID: 7800928160588378936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998130245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,6 +2130,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: af3f5838727854df1ae389290ad73a3a,
         type: 3}
-    m_RemovedComponents:
-    - {fileID: 7800928159967532607, guid: 64ecedb56801ee14dab057bf1edee801, type: 3}
+    - target: {fileID: 7800928159967532607, guid: 64ecedb56801ee14dab057bf1edee801,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64ecedb56801ee14dab057bf1edee801, type: 3}
