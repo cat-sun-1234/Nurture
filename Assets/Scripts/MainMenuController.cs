@@ -19,6 +19,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SwitchToGame()
     {
+        Debug.Log("HMIAIH");
         //TODO change scene name once the gameplay loop scene is finalised
         SceneManager.LoadScene("Main");
     }
