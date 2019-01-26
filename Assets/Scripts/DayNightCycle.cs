@@ -16,6 +16,13 @@ public class DayNightCycle : MonoBehaviour
     public AnimationCurve sunYPos;
     public float sunCentrePoint;
     public float sunRadius;
+    [Header("Moon")]
+    public GameObject moon;
+    float moonHeight;
+    public AnimationCurve moonXPos;
+    public AnimationCurve moonYPos;
+    public float moonCentrePoint;
+    public float moonRadius;
     [Header("Sky")]
     public SpriteRenderer sky;
     [Range(0, 0.5f)]
@@ -50,6 +57,11 @@ public class DayNightCycle : MonoBehaviour
         float sunX = ((sunXPos.Evaluate(time) * 2) - 1) * sunRadius;
         sunHeight = ((sunYPos.Evaluate(time) * 2) - 1) * sunRadius;
         sun.transform.position = (Vector3.right * sunX) + (Vector3.up * (sunHeight + sunCentrePoint));
+        #endregion
+        #region Moon Position
+        float moonX = ((moonXPos.Evaluate(time) * 2) - 1) * moonRadius;
+        moonHeight = ((moonYPos.Evaluate(time) * 2) - 1) * moonRadius;
+        moon.transform.position = (Vector3.right * moonX) + (Vector3.up * (moonHeight + moonCentrePoint));
         #endregion
         #region Sky Color
         if (time > sunSetPoint && time < (sunSetPoint + sunSetStartLength))
