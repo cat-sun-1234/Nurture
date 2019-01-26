@@ -1,4 +1,4 @@
-/Library*
+/Library/*
 /Temp/*
-Library/CurrentLayout.dwlt
-Library/EditorUserBuildSettings.asset
+/.vs/*
+/obj/*
