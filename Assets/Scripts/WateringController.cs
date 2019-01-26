@@ -11,6 +11,16 @@ public class WateringController : MonoBehaviour
     public GameObject water_meter;
     public GameObject plant;
 
+    [Header("Grow Speed")]
+    public float fastGrow = 0.3f;
+    public float slowGrow = 0.1f;
+    [Header("Plant Growth")]
+    public float stage1 = 20f;
+    public float stage2 = 40f;
+    [Header("Plant Wilt")]
+    public float wilt1 = 20f;
+    public float recover1 = 50f;
+
     //private Transform tr;
 
     private Slider meter_sld;
@@ -18,6 +28,7 @@ public class WateringController : MonoBehaviour
     private Animator plant_anit;
 
     private float growth = 0f;
+    private float wilt = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,14 +57,18 @@ public class WateringController : MonoBehaviour
             print("Touch Position : " + touch.position);
 
             //meter_tr.localScale += new Vector3(0, 0.003f, 0);
-            meter_sld.value += 0.3f;
+            meter_sld.value += fastGrow;
             if (meter_sld.value < 99f)
             {
                 //plant_tr.position += new Vector3(0, 0.001f, 0);
-                growth += 0.3f;
-                if (growth > 200f)
+                growth += fastGrow;
+                if (growth > stage1)
                 {
                     plant_anit.SetInteger("Growth", 1);
+                }
+                else if (growth > stage2)
+                {
+                    plant_anit.SetInteger("Growth", 2);
                 }
             }
         } 
@@ -65,8 +80,13 @@ public class WateringController : MonoBehaviour
             if (meter_sld.value < 99f)
             {
                 //plant_tr.position += new Vector3(0, 0.001f, 0);
-                growth += 0.3f;
-                if (growth > 200f)
+                growth += fastGrow;
+                print("stage1" + stage1);
+                if (growth > stage2)
+                {
+                    plant_anit.SetInteger("Growth", 2);
+                }
+                else if (growth > stage1)
                 {
                     plant_anit.SetInteger("Growth", 1);
                 }
@@ -77,14 +97,33 @@ public class WateringController : MonoBehaviour
                 //meter_tr.localScale -= new Vector3(0, 0.0005f, 0);
                 meter_sld.value -= 0.1f;
                 //plant_tr.position += new Vector3(0, 0.0005f, 0);
-                growth += 0.1f;
-                if (growth > 200f)
+                growth += slowGrow;
+                if (growth > stage2)
+                {
+                    plant_anit.SetInteger("Growth", 2);
+                }
+                else if (growth > stage1)
                 {
                     plant_anit.SetInteger("Growth", 1);
                 }
             }
         }
-        print(growth);
+
+        if (meter_sld.value < 1f)
+        {
+            wilt += 0.1f;
+        } else if (wilt > 0f) {
+            wilt -= 0.2f;
+        }
+
+        if (wilt > wilt1) {
+            plant_anit.SetInteger("Wilt", 1);
+        }
+        else if (wilt < recover1 && plant_anit.GetInteger("Wilt") == 1)
+        {
+            plant_anit.SetInteger("Wilt", 0);
+        }
+        print(growth + " wilt: " + wilt);
 
 
     }
