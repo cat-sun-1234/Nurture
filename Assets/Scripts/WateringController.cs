@@ -10,6 +10,7 @@ public class WateringController : MonoBehaviour
 
     public GameObject water_meter;
     public GameObject plant;
+    public Text debug;
 
     [Header("Grow Speed")]
     public float fastGrow = 0.3f;
@@ -34,6 +35,14 @@ public class WateringController : MonoBehaviour
 
     private float growth = 0f;
     private float wilt = 0f;
+
+    private float mouseX = -1f;
+    private float mouseY = -1f;
+    private float diffX = -1f;
+    private float diffY = -1f;
+
+    private float touchDX = -1f;
+    private float touchDY = -1f;
 
     // Start is called before the first frame update
     void Start()
@@ -156,8 +165,66 @@ public class WateringController : MonoBehaviour
         {
             plant_anit.SetInteger("Wilt", 0);
         }
-        print(growth + " wilt: " + wilt);
+        //print(growth + " wilt: " + wilt);
 
+
+        if (Input.GetMouseButton(0))
+        {
+            if (mouseX != -1f && mouseY != -1f) {
+
+                diffX = Input.mousePosition.x - mouseX;
+                diffY = Input.mousePosition.y - mouseY;
+            }
+
+            //print(diffX + " " + diffY);
+
+            if (diffX < -15f && diffY > -10f && diffY < 10f )
+            {
+                print("Swiped Left!");
+            }
+            else if (diffX > 15f && diffY > -10f && diffY < 10f )
+            {
+                print("Swiped Right!");
+            }
+
+
+            mouseX = Input.mousePosition.x;
+            mouseY = Input.mousePosition.y;
+        } else {
+            mouseX = -1f;
+            mouseY = -1f;
+            diffX = -1f;
+            diffY = -1f;
+        }
+
+        if (Input.touchCount > 0)
+        {
+
+            Touch touch = Input.GetTouch(0);
+
+            print(touch.deltaPosition.x + " " + touch.deltaPosition.y);
+
+
+            debug.text = "delta" + touch.deltaPosition.x + " " + touch.deltaPosition.y;
+
+            if (touch.deltaPosition.x < -15f && touch.deltaPosition.y > -10f && touch.deltaPosition.y < 10f )
+            {
+                debug.text = "delta" + touch.deltaPosition.x + " " + touch.deltaPosition.y + " LEFT";
+            }
+            else if (touch.deltaPosition.x > 15f && touch.deltaPosition.y > -10f && touch.deltaPosition.y < 10f )
+            {
+                debug.text = "delta" + touch.deltaPosition.x + " " + touch.deltaPosition.y + " RIGHT";
+            }
+
+
+            //mouseX = Input.mousePosition.x;
+            //mouseY = Input.mousePosition.y;
+        } else {
+            /*mouseX = -1f;
+            mouseY = -1f;
+            diffX = -1f;
+            diffY = -1f;*/
+        }
 
     }
 }
