@@ -21,7 +21,7 @@ public class Plant : MonoBehaviour
         //respawn code
         GameObject newPlant = Object.Instantiate(Resources.Load("Prefabs/Plant"), GameObject.Find("PlantSpawnPoint").transform) as GameObject;
         newPlant.transform.parent = null;
-        //GameObject.Find("Button").GetComponent<WateringController>().RespawnPlant(newPlant); //sets new plant for water controller
+        GameObject.Find("Button").GetComponent<WateringController>().RespawnPlant(newPlant); //sets new plant for water controller
         Destroy(this.gameObject);
     }
 }

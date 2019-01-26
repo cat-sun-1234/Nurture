@@ -27,6 +27,8 @@ public class WateringController : MonoBehaviour
     public float recover1 = 10f;
     public float recover2 = 30f;
 
+    //private Transform tr;
+
     private Slider meter_sld;
     private Transform plant_tr;
     private Animator plant_anit;
@@ -45,6 +47,8 @@ public class WateringController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //tr = GetComponent<Transform> ();
+
         meter_sld = water_meter.GetComponent<Slider>();
         plant_tr = plant.GetComponent<Transform>();
 
@@ -57,6 +61,8 @@ public class WateringController : MonoBehaviour
     {
         energy = 1 + ((int)Mathf.Clamp(DayNightCycle.GetSunHeight(), 0, int.MaxValue) / 2);
 
+        //plant_anit.speed = 0;
+
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             Touch touch = Input.GetTouch(0);
@@ -64,10 +70,12 @@ public class WateringController : MonoBehaviour
             //Update the Text on the screen depending on current position of the touch each frame
             print("Touch Position : " + touch.position);
 
+            //meter_tr.localScale += new Vector3(0, 0.003f, 0);
             meter_sld.value += fastGrow;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow; 
+                //plant_tr.position += new Vector3(0, 0.001f, 0);
+                growth += fastGrow;
                 if (growth > stage1)
                 {
                     plant_anit.SetInteger("Growth", 1);
@@ -80,9 +88,12 @@ public class WateringController : MonoBehaviour
         } 
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
+
+            //meter_tr.localScale += new Vector3(0, 0.003f, 0);
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f)
             {
+                //plant_tr.position += new Vector3(0, 0.001f, 0);
                 growth += fastGrow;
                 if (growth > stage4)
                 {
@@ -104,7 +115,9 @@ public class WateringController : MonoBehaviour
         } else {
             if (meter_sld.value > 0f)
             {
+                //meter_tr.localScale -= new Vector3(0, 0.0005f, 0);
                 meter_sld.value -= 0.1f;
+                //plant_tr.position += new Vector3(0, 0.0005f, 0);
                 growth += slowGrow;
                 if (growth > stage4)
                 {
@@ -152,6 +165,8 @@ public class WateringController : MonoBehaviour
         {
             plant_anit.SetInteger("Wilt", 0);
         }
+        //print(growth + " wilt: " + wilt);
+
 
         if (Input.GetMouseButton(0))
         {
@@ -160,6 +175,8 @@ public class WateringController : MonoBehaviour
                 diffX = Input.mousePosition.x - mouseX;
                 diffY = Input.mousePosition.y - mouseY;
             }
+
+            //print(diffX + " " + diffY);
 
             if (diffX < -15f && diffY > -10f && diffY < 10f )
             {
@@ -199,6 +216,14 @@ public class WateringController : MonoBehaviour
                 debug.text = "delta" + touch.deltaPosition.x + " " + touch.deltaPosition.y + " RIGHT";
             }
 
+
+            //mouseX = Input.mousePosition.x;
+            //mouseY = Input.mousePosition.y;
+        } else {
+            /*mouseX = -1f;
+            mouseY = -1f;
+            diffX = -1f;
+            diffY = -1f;*/
         }
 
     }
