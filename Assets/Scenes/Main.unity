@@ -798,6 +798,7 @@ GameObject:
   - component: {fileID: 788718853}
   - component: {fileID: 788718852}
   - component: {fileID: 788718854}
+  - component: {fileID: 788718855}
   m_Layer: 0
   m_Name: TropPlantA_Game
   m_TagString: Untagged
@@ -842,7 +843,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: af3f5838727854df1ae389290ad73a3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cd736819dd6954f30b6f0c9dfcf3ed9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -886,6 +887,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &788718855
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788718851}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &958080393
 GameObject:
   m_ObjectHideFlags: 0
