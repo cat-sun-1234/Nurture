@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class WateringController : MonoBehaviour
 {
-    float energy;
+    public float energy;
 
     public GameObject water_meter;
     public GameObject plant;
 
     //private Transform tr;
 
+    public float waterAdd = 0.3f; //measures how much water is added to meter per tick
+    public float waterDeplete = 0.01f; //rate at which the water depletes over time
     private Slider meter_sld;
     private Transform plant_tr;
 
@@ -23,6 +25,7 @@ public class WateringController : MonoBehaviour
 
         meter_sld = water_meter.GetComponent<Slider>();
         plant_tr = plant.GetComponent<Transform>();
+        meter_sld.value = plant.GetComponent<Plant>().waterLevel;
     }
 
     // Update is called once per frame
@@ -38,35 +41,40 @@ public class WateringController : MonoBehaviour
             print("Touch Position : " + touch.position);
 
             //meter_tr.localScale += new Vector3(0, 0.003f, 0);
-            meter_sld.value += 0.3f;
+            if (meter_sld.value < meter_sld.maxValue)
+            {
+                plant.GetComponent<Plant>().waterLevel += waterAdd;
+            }
             if (meter_sld.value < 99f && plant_tr.position.y < -1.3f)
             {
-                plant_tr.position += new Vector3(0, 0.001f, 0);
+                plant_tr.position += new Vector3(0, plant.GetComponent<Plant>().growthRate*energy, 0);
             }
         } 
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
             print("Pressed left click.");
 
-
-
             //meter_tr.localScale += new Vector3(0, 0.003f, 0);
-            meter_sld.value += 0.3f;
+            if (meter_sld.value < meter_sld.maxValue)
+            {
+                plant.GetComponent<Plant>().waterLevel += waterAdd;
+            }
             if (meter_sld.value < 99f && plant_tr.position.y < -1.3f)
             {
-                plant_tr.position += new Vector3(0, 0.001f, 0);
+                plant_tr.position += new Vector3(0, plant.GetComponent<Plant>().growthRate * energy, 0); //growth now affected bu energy from sun
             }
         } else {
             if (meter_sld.value > 0f)
             {
                 //meter_tr.localScale -= new Vector3(0, 0.0005f, 0);
-                meter_sld.value -= 0.1f;
+                plant.GetComponent<Plant>().waterLevel -= waterDeplete*energy; //let's have depletion affected by energy too, more sun = more heat = more drying up
                 if (plant_tr.position.y < -1.3f)
                 {
-                    plant_tr.position += new Vector3(0, 0.0005f, 0);
+                    plant_tr.position += new Vector3(0, plant.GetComponent<Plant>().growthRate * energy, 0);
                 }
             }
         }
+        meter_sld.value = plant.GetComponent<Plant>().waterLevel;
     }
 
 
