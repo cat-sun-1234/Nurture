@@ -27,8 +27,6 @@ public class WateringController : MonoBehaviour
     public float recover1 = 10f;
     public float recover2 = 30f;
 
-    //private Transform tr;
-
     private Slider meter_sld;
     private Transform plant_tr;
     private Animator plant_anit;
@@ -47,8 +45,6 @@ public class WateringController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //tr = GetComponent<Transform> ();
-
         meter_sld = water_meter.GetComponent<Slider>();
         plant_tr = plant.GetComponent<Transform>();
 
@@ -91,7 +87,7 @@ public class WateringController : MonoBehaviour
             meter_sld.value += fastGrow;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow * energy;
+                growth += fastGrow * energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } 
@@ -100,14 +96,14 @@ public class WateringController : MonoBehaviour
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow*energy;
+                growth += fastGrow*energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } else {
             if (meter_sld.value > 0f)
             {
-                meter_sld.value -= 0.1f*energy;
-                growth += slowGrow *energy;
+                meter_sld.value -= 0.1f*energy*Time.deltaTime;
+                growth += slowGrow *energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         }
