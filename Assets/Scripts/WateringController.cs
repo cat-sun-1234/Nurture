@@ -48,6 +48,8 @@ public class WateringController : MonoBehaviour
         {
             print("Pressed left click.");
 
+
+
             //meter_tr.localScale += new Vector3(0, 0.003f, 0);
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f && plant_tr.position.y < -1.3f)
@@ -65,7 +67,7 @@ public class WateringController : MonoBehaviour
                 }
             }
         }
-
-
     }
+
+
 }
