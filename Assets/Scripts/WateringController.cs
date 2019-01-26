@@ -56,12 +56,30 @@ public class WateringController : MonoBehaviour
         
     }
 
+    public void CheckGrowthThresholds()
+    {
+        if (growth > stage4)
+        {
+            plant_anit.SetInteger("Growth", 4);
+        }
+        else if (growth > stage3)
+        {
+            plant_anit.SetInteger("Growth", 3);
+        }
+        else if (growth > stage2)
+        {
+            plant_anit.SetInteger("Growth", 2);
+        }
+        else if (growth > stage1)
+        {
+            plant_anit.SetInteger("Growth", 1);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         energy = 1 + ((int)Mathf.Clamp(DayNightCycle.GetSunHeight(), 0, int.MaxValue) / 2);
-
-        //plant_anit.speed = 0;
 
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
@@ -70,71 +88,27 @@ public class WateringController : MonoBehaviour
             //Update the Text on the screen depending on current position of the touch each frame
             print("Touch Position : " + touch.position);
 
-            //meter_tr.localScale += new Vector3(0, 0.003f, 0);
             meter_sld.value += fastGrow;
             if (meter_sld.value < 99f)
             {
-                //plant_tr.position += new Vector3(0, 0.001f, 0);
-                growth += fastGrow;
-                if (growth > stage1)
-                {
-                    plant_anit.SetInteger("Growth", 1);
-                }
-                else if (growth > stage2)
-                {
-                    plant_anit.SetInteger("Growth", 2);
-                }
+                growth += fastGrow * energy;
+                CheckGrowthThresholds();
             }
         } 
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
-
-            //meter_tr.localScale += new Vector3(0, 0.003f, 0);
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f)
             {
-                //plant_tr.position += new Vector3(0, 0.001f, 0);
-                growth += fastGrow;
-                if (growth > stage4)
-                {
-                    plant_anit.SetInteger("Growth", 4);
-                }
-                else if (growth > stage3)
-                {
-                    plant_anit.SetInteger("Growth", 3);
-                }
-                else if (growth > stage2)
-                {
-                    plant_anit.SetInteger("Growth", 2);
-                }
-                else if (growth > stage1)
-                {
-                    plant_anit.SetInteger("Growth", 1);
-                }
+                growth += fastGrow*energy;
+                CheckGrowthThresholds();
             }
         } else {
             if (meter_sld.value > 0f)
             {
-                //meter_tr.localScale -= new Vector3(0, 0.0005f, 0);
-                meter_sld.value -= 0.1f;
-                //plant_tr.position += new Vector3(0, 0.0005f, 0);
-                growth += slowGrow;
-                if (growth > stage4)
-                {
-                    plant_anit.SetInteger("Growth", 4);
-                }
-                else if (growth > stage3)
-                {
-                    plant_anit.SetInteger("Growth", 3);
-                }
-                else if (growth > stage2)
-                {
-                    plant_anit.SetInteger("Growth", 2);
-                }
-                else if (growth > stage1)
-                {
-                    plant_anit.SetInteger("Growth", 1);
-                }
+                meter_sld.value -= 0.1f*energy;
+                growth += slowGrow *energy;
+                CheckGrowthThresholds();
             }
         }
 
@@ -165,8 +139,6 @@ public class WateringController : MonoBehaviour
         {
             plant_anit.SetInteger("Wilt", 0);
         }
-        //print(growth + " wilt: " + wilt);
-
 
         if (Input.GetMouseButton(0))
         {
@@ -175,8 +147,6 @@ public class WateringController : MonoBehaviour
                 diffX = Input.mousePosition.x - mouseX;
                 diffY = Input.mousePosition.y - mouseY;
             }
-
-            //print(diffX + " " + diffY);
 
             if (diffX < -15f && diffY > -10f && diffY < 10f )
             {
