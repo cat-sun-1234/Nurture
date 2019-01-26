@@ -87,7 +87,7 @@ public class WateringController : MonoBehaviour
             meter_sld.value += fastGrow;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow * energy;
+                growth += fastGrow * energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } 
@@ -96,14 +96,14 @@ public class WateringController : MonoBehaviour
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow*energy;
+                growth += fastGrow*energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } else {
             if (meter_sld.value > 0f)
             {
-                meter_sld.value -= 0.1f*energy;
-                growth += slowGrow *energy;
+                meter_sld.value -= 0.1f*energy*Time.deltaTime;
+                growth += slowGrow *energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         }
