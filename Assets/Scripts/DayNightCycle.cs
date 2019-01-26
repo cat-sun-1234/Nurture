@@ -11,7 +11,7 @@ public class DayNightCycle : MonoBehaviour
     //bool morning;
     [Header("Sun")]
     public GameObject sun;
-    float sunHeight;
+    static float sunHeight;
     public AnimationCurve sunXPos;
     public AnimationCurve sunYPos;
     public float sunCentrePoint;
@@ -38,6 +38,10 @@ public class DayNightCycle : MonoBehaviour
             days++;
         }
         Debug.Log(days + " " + (int)timeOfDay);
+    }
+    public static float GetSunHeight()
+    {
+        return sunHeight;
     }
     void Transition()
     {
