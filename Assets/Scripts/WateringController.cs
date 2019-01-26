@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class WateringController : MonoBehaviour
 {
+    float energy;
+
     public GameObject water_meter;
     public GameObject plant;
 
@@ -26,7 +28,7 @@ public class WateringController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        energy = 1 + ((int)Mathf.Clamp(DayNightCycle.GetSunHeight(), 0, int.MaxValue) / 2);
 
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
@@ -64,6 +66,6 @@ public class WateringController : MonoBehaviour
             }
         }
 
-        
+
     }
 }

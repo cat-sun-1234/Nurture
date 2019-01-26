@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DayNightCycle.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\SeedChoice.cs" />
     <Compile Include="Assets\Scripts\WateringController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Public/Documents/Unity Projects/Nurture GGJ 2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -627,7 +628,7 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
