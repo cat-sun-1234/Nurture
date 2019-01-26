@@ -637,6 +637,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DayNightCycle.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\SeedChoice.cs" />
     <Compile Include="Assets\Scripts\WateringController.cs" />
   </ItemGroup>
   <ItemGroup>
