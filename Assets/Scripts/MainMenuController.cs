@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        KanoTransformations = 0;
     }
     #region Scene Data
     string PPN;
