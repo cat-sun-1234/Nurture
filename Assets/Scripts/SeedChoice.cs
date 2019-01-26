@@ -22,14 +22,6 @@ public class SeedChoice : MonoBehaviour
         PlantSeed(PlayerPrefs.GetInt("SeedID"));
     }
 
-    //public void UpdateIcons()
-    //{
-    //    for (int i = 0; i < seeds.Count; i++)
-    //    {
-    //        buttons[i].targetGraphic = seeds[i].sprites[ec.terrainID];
-    //    }
-    //}
-
     public void PlantSeed(int _ST)
     {
         if(wc != null && wc.plant!= null)
