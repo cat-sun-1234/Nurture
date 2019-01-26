@@ -1277,6 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSpeed: 1
+  startTime: 0.5
   dayLength: 72
   sun: {fileID: 694245545}
   sunXPos:
