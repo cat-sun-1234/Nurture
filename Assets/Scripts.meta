@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
-guid: 30f728c0f1a10c94a9e537821a1c4c8a
-=======
 guid: ff56ad0c045faa54db9f20f30d4d0d58
->>>>>>> MergeTest
-=======
-guid: ff56ad0c045faa54db9f20f30d4d0d58
->>>>>>> master
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
