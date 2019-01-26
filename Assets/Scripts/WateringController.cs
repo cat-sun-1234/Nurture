@@ -8,6 +8,9 @@ public class WateringController : MonoBehaviour
 {
     float energy;
 
+    public AudioClip waterSound;
+    AudioController audio;
+
     public GameObject water_meter;
     public GameObject plant;
     public Text debug;
@@ -45,6 +48,7 @@ public class WateringController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio = FindObjectOfType<AudioController>();
         meter_sld = water_meter.GetComponent<Slider>();
         plant_tr = plant.GetComponent<Transform>();
 
@@ -80,7 +84,7 @@ public class WateringController : MonoBehaviour
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             Touch touch = Input.GetTouch(0);
-
+            audio.PlaySound(waterSound);
             //Update the Text on the screen depending on current position of the touch each frame
             print("Touch Position : " + touch.position);
 
@@ -93,6 +97,7 @@ public class WateringController : MonoBehaviour
         } 
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
+            audio.PlaySound(waterSound);
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f)
             {
