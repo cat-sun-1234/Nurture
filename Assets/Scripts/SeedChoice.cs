@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class SeedChoice : MonoBehaviour
 {
@@ -10,11 +10,21 @@ public class SeedChoice : MonoBehaviour
     public List<SeedType> seeds;
     public Vector3 seedPos;
 
+    Button[] buttons;
+
     private void Awake()
     {
         wc = FindObjectOfType<WateringController>();
         ec = FindObjectOfType<EnvironmentChoice>();
     }
+
+    //public void UpdateIcons()
+    //{
+    //    for (int i = 0; i < seeds.Count; i++)
+    //    {
+    //        buttons[i].targetGraphic = seeds[i].sprites[ec.terrainID];
+    //    }
+    //}
 
     public void PlantSeed(int _ST)
     {

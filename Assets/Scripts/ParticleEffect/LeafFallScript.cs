@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class LeafFallScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    float timer;
+    private void Awake()
+    { 
+        gameObject.AddComponent<Rigidbody2D>();
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.1f;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.Rotate(Vector3.forward, Random.Range(-1,1));
+        timer += Time.deltaTime;
+        if(timer > 5)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    public void OnCollisionEnter(Collision col)
+    {
+        Destroy(this.gameObject);
     }
 }
+
