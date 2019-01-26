@@ -5,6 +5,8 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour
 {
     public float timeSpeed;
+    [Range(0,1)]
+    public float startTime;
     float timeOfDay;
     int days = 1;
     public float dayLength;
@@ -25,6 +27,7 @@ public class DayNightCycle : MonoBehaviour
     public float moonRadius;
     [Header("Sky")]
     public SpriteRenderer sky;
+    [Header("0 is Midnight, 0.5 is midday")]
     [Range(0, 0.5f)]
     public float sunSetPoint;
     [Range(0, 0.25f)]
@@ -34,7 +37,10 @@ public class DayNightCycle : MonoBehaviour
     public Color day;
     public Color sunset;
     public Color night;
-
+    private void Awake()
+    {
+        timeOfDay = startTime * dayLength;
+    }
     void Update()
     {
         timeOfDay += Time.deltaTime;
@@ -83,6 +89,14 @@ public class DayNightCycle : MonoBehaviour
         {
             float p = Mathf.InverseLerp(1 - (sunSetPoint + sunSetStartLength), 1 - sunSetPoint, time);
             sky.color = Color.Lerp(sunset, night, p);
+        }
+        else if(time < sunSetPoint || time > 1 - sunSetPoint)
+        {
+            sky.color = night;
+        }
+        else if (time > (sunSetPoint + sunSetStartLength + sunSetEndLength) || time < 1 - (sunSetPoint + sunSetStartLength + sunSetEndLength))
+        {
+            sky.color = day;
         }
         #endregion
         //}
