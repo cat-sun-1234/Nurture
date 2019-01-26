@@ -16,6 +16,9 @@ public class AudioController:MonoBehaviour
         {
             aPlayer.clip = _Sound;
         }
-        aPlayer.Play();
+        if(!aPlayer.isPlaying)
+        {
+            aPlayer.Play();
+        }
     }
 }
