@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    private int KanoTransformations = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
     #region Scene Data
     string PPN;
     int PPV;
@@ -49,5 +55,16 @@ public class MainMenuController : MonoBehaviour
     {
         //GetComponentInChildren<AudioSource>().Play();
         SceneManager.LoadScene("SplashScreen");
+    }
+
+    public void DULLARD()
+    {
+        KanoTransformations++;
+
+        if (KanoTransformations == 15)
+        {
+            KanoTransformations = 0;
+            SceneManager.LoadScene("CreditsScreen 1");
+        }
     }
 }
