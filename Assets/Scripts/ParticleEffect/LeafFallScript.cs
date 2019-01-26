@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class LeafFallScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ParticleSystem particles;
+    public GameObject prefab;
+    public bool isActive;
+    private void Update()
     {
-        
-    }
+        //particles 
+        if(isActive)
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }
+

@@ -9,6 +9,10 @@ public class EnvironmentChoice : MonoBehaviour
     public Vector3 terrainPos;
     public int terrainID;
 
+    public void Start()
+    {
+        FormTerrain(PlayerPrefs.GetInt("TerrainID"));
+    }
     public void FormTerrain(int _TT)
     {
         terrainID = _TT;
