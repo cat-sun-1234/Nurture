@@ -4,42 +4,37 @@ using UnityEngine;
 
 public class SeedChoice : MonoBehaviour
 {
-    public GameObject spriteObject;
+    EnvironmentChoice ec;
     WateringController wc;
     public List<SeedType> seeds;
     public Vector3 seedPos;
     private void Awake()
     {
         wc = FindObjectOfType<WateringController>();
+        ec = FindObjectOfType<EnvironmentChoice>();
     }
-    private void Update()
+
+    public void PlantSeed(int _ST)
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if(wc != null && wc.plant!= null)
         {
-            PlantSeed(seeds[0]);
+            Destroy(wc.plant);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            PlantSeed(seeds[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            PlantSeed(seeds[2]);
-        }
+        wc.plant = GetSeed(seeds[_ST]);
     }
-    public void PlantSeed(SeedType _ST)
+    public GameObject GetSeed(SeedType _ST)
     {
         GameObject seedObject = new GameObject();
         seedObject.transform.position = seedPos;
         SpriteRenderer newSprite = seedObject.AddComponent<SpriteRenderer>();
-        newSprite.sprite = _ST.sprite;
+        newSprite.sprite = _ST.sprites[ec.terrainID];
         seedObject.name = _ST.name;
-        wc.plant = seedObject;
+        return seedObject;
     }
 }
 [System.Serializable]
 public struct SeedType
 {
     public string name;
-    public Sprite sprite;
+    public Sprite[] sprites;
 }
