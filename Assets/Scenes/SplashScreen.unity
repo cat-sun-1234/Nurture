@@ -639,6 +639,7 @@ GameObject:
   - component: {fileID: 1156520591}
   - component: {fileID: 1156520590}
   - component: {fileID: 1156520589}
+  - component: {fileID: 1156520593}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -729,6 +730,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &1156520593
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156520588}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3183c2cd4db462845b0ee7edfca767e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1231302070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2220631492846373354, guid: 0f9e4b443d99a4715ad8e0721fd76e48,
@@ -895,7 +915,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5081303048998626335, guid: 2e2f4d0786adc4ad5868d1b0366dccef,
           type: 3}
-        m_MethodName: SwitchToGame
+        m_MethodName: GoToSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
