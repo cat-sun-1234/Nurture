@@ -44,7 +44,7 @@ public class DayNightCycle : MonoBehaviour
             timeOfDay = 0;
             days++;
         }
-        Debug.Log(days + " " + (int)timeOfDay);
+        //Debug.Log(days + " " + (int)timeOfDay);
     }
     public static float GetSunHeight()
     {
