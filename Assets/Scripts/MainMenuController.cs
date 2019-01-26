@@ -5,16 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Scene Data
+    string PPN;
+    int PPV;
+    public void SetPlayerPrefName(string _N)
     {
-        
+        PPN = _N;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void SetPlayerPrefValue(int _V)
     {
-        
+        PPV = _V;
+    }
+    public void SetPlayerPref()
+    {
+        PlayerPrefs.SetInt(PPN, PPV);
+        //Debug.Log(PPN + ": " + PPV);
+    }
+    #endregion
+    public void ActivateObject(GameObject _G)
+    {
+        _G.SetActive(true);
+    }
+    public void DeactivateObject(GameObject _G)
+    {
+        _G.SetActive(false);
     }
 
     public void SwitchToGame()

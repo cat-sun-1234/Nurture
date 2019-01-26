@@ -17,6 +17,10 @@ public class SeedChoice : MonoBehaviour
         wc = FindObjectOfType<WateringController>();
         ec = FindObjectOfType<EnvironmentChoice>();
     }
+    private void Start()
+    {
+        PlantSeed(PlayerPrefs.GetInt("SeedID"));
+    }
 
     //public void UpdateIcons()
     //{
