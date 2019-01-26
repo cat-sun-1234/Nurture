@@ -25,7 +25,7 @@ public class MainMenuController : MonoBehaviour
     public void SetPlayerPref()
     {
         PlayerPrefs.SetInt(PPN, PPV);
-        //Debug.Log(PPN + ": " + PPV);
+        Debug.Log(PPN + ": " + PPV);
     }
     #endregion
     public void ActivateObject(GameObject _G)

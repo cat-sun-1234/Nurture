@@ -193,4 +193,11 @@ public class WateringController : MonoBehaviour
         }
 
     }
+
+
+    public void SetPlant(GameObject seed) {
+        plant = (GameObject)seed;
+        plant_tr = plant.GetComponent<Transform>();
+        plant_anit = plant.GetComponent<Animator>();
+    }
 }
