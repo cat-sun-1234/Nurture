@@ -19,7 +19,7 @@ public class SelectSound : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this.gameObject.transform.parent.gameObject);
         }
     }
 }
