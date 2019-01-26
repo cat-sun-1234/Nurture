@@ -20,17 +20,20 @@ public class MainMenuController : MonoBehaviour
     public void SwitchToGame()
     {
         //TODO change scene name once the gameplay loop scene is finalised
+        //GetComponentInChildren<AudioSource>().Play();
         SceneManager.LoadScene("Main");
     }
 
     public void SwitchToCredits()
     {
         //TODO implement credits screen
+        //GetComponentInChildren<AudioSource>().Play();
         SceneManager.LoadScene("CreditsScreen");
     }
 
     public void SwitchToSplash()
     {
+        //GetComponentInChildren<AudioSource>().Play();
         SceneManager.LoadScene("SplashScreen");
     }
 }
