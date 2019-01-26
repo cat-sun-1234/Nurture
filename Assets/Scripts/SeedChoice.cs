@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
 
 public class SeedChoice : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SeedChoice : MonoBehaviour
     WateringController wc;
     public List<SeedType> seeds;
     public Vector3 seedPos;
+
     private void Awake()
     {
         wc = FindObjectOfType<WateringController>();
