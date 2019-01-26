@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour {
 
+
     private void Awake()
     {
         SetUpSingleton();

@@ -37,6 +37,10 @@ public class MainMenuController : MonoBehaviour
         _G.SetActive(false);
     }
 
+    public void GoToSelection()
+    {
+        SceneManager.LoadScene("SelectionScene");
+    }
     public void SwitchToGame()
     {
         //TODO change scene name once the gameplay loop scene is finalised
