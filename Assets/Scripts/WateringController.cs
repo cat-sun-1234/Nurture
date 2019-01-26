@@ -17,9 +17,14 @@ public class WateringController : MonoBehaviour
     [Header("Plant Growth")]
     public float stage1 = 20f;
     public float stage2 = 40f;
+    public float stage3 = 70f;
+    public float stage4 = 100f;
     [Header("Plant Wilt")]
     public float wilt1 = 20f;
-    public float recover1 = 50f;
+    public float wilt2 = 40f;
+    public float wilt3 = 60f;
+    public float recover1 = 10f;
+    public float recover2 = 30f;
 
     //private Transform tr;
 
@@ -81,8 +86,15 @@ public class WateringController : MonoBehaviour
             {
                 //plant_tr.position += new Vector3(0, 0.001f, 0);
                 growth += fastGrow;
-                print("stage1" + stage1);
-                if (growth > stage2)
+                if (growth > stage4)
+                {
+                    plant_anit.SetInteger("Growth", 4);
+                }
+                else if (growth > stage3)
+                {
+                    plant_anit.SetInteger("Growth", 3);
+                }
+                else if (growth > stage2)
                 {
                     plant_anit.SetInteger("Growth", 2);
                 }
@@ -98,7 +110,15 @@ public class WateringController : MonoBehaviour
                 meter_sld.value -= 0.1f;
                 //plant_tr.position += new Vector3(0, 0.0005f, 0);
                 growth += slowGrow;
-                if (growth > stage2)
+                if (growth > stage4)
+                {
+                    plant_anit.SetInteger("Growth", 4);
+                }
+                else if (growth > stage3)
+                {
+                    plant_anit.SetInteger("Growth", 3);
+                }
+                else if (growth > stage2)
                 {
                     plant_anit.SetInteger("Growth", 2);
                 }
@@ -116,7 +136,20 @@ public class WateringController : MonoBehaviour
             wilt -= 0.2f;
         }
 
-        if (wilt > wilt1) {
+        if (wilt > wilt3)
+        {
+            plant_anit.SetInteger("Wilt", 3);
+        }
+        else if (wilt > wilt2)
+        {
+            plant_anit.SetInteger("Wilt", 2);
+        }
+        else if (wilt > wilt1)
+        {
+            plant_anit.SetInteger("Wilt", 1);
+        }
+        else if (wilt < recover2 && plant_anit.GetInteger("Wilt") == 2)
+        {
             plant_anit.SetInteger("Wilt", 1);
         }
         else if (wilt < recover1 && plant_anit.GetInteger("Wilt") == 1)
