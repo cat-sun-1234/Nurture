@@ -29,43 +29,47 @@ public class WateringController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         energy = 1 + ((int)Mathf.Clamp((DayNightCycle.GetSunHeight() / 2), 0, int.MaxValue) / 2.0f);
         Debug.Log(energy);
-        if (Input.touchCount > 0)
+        if (plant != null)
         {
-            //energy = 1 + ((int)Mathf.Clamp(DayNightCycle.GetSunHeight(), 0, int.MaxValue) / 2);
-        }
-        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        {
-            Touch touch = Input.GetTouch(0);
-
-            //Update the Text on the screen depending on current position of the touch each frame
-            print("Touch Position : " + touch.position);
-
-            meter_tr.localScale += new Vector3(0, 0.003f, 0) * energy;
-            plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
-        }
-        else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
-        {
-            //print("Pressed left click.");
-
-            meter_tr.localScale += new Vector3(0, 0.003f, 0) * energy;
-            plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
-        }
-        //else
-        //{
-        //    plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
-        //} 
-        else
-        {
-            if (meter_tr.localScale.y > 0f)
+            if (Input.touchCount > 0)
             {
-                meter_tr.localScale -= new Vector3(0, 0.0005f, 0);
-                plant_tr.position += new Vector3(0, 0.001f, 0);
+                //energy = 1 + ((int)Mathf.Clamp(DayNightCycle.GetSunHeight(), 0, int.MaxValue) / 2);
+            }
+            if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                Touch touch = Input.GetTouch(0);
+
+                //Update the Text on the screen depending on current position of the touch each frame
+                print("Touch Position : " + touch.position);
+
+                meter_tr.localScale += new Vector3(0, 0.003f, 0) * energy;
+                plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
+            }
+            else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
+            {
+                //print("Pressed left click.");
+
+                meter_tr.localScale += new Vector3(0, 0.003f, 0) * energy;
+                plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
+            }
+            //else
+            //{
+            //    plant_tr.position += new Vector3(0, 0.001f, 0) * energy;
+            //} 
+            else
+            {
+                if (meter_tr.localScale.y > 0f)
+                {
+                    meter_tr.localScale -= new Vector3(0, 0.0005f, 0);
+                    plant_tr.position += new Vector3(0, 0.001f, 0);
+                }
             }
         }
     }

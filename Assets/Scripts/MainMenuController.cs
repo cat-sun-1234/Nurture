@@ -5,16 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void ActivateMenu(GameObject _Menu)
     {
-        
+        _Menu.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void DeactivateMenu(GameObject _Menu)
     {
-        
+        _Menu.SetActive(false);
     }
 
     public void SwitchToGame()
