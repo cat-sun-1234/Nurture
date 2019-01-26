@@ -20,7 +20,7 @@ public class MainMenuController : MonoBehaviour
     public void SwitchToGame()
     {
         //TODO change scene name once the gameplay loop scene is finalised
-        SceneManager.LoadScene("DayNightCycleTesting");
+        SceneManager.LoadScene("Main");
     }
 
     public void SwitchToCredits()
