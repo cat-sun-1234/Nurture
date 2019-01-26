@@ -28,6 +28,12 @@ public class WateringController : MonoBehaviour
         meter_sld.value = plant.GetComponent<Plant>().waterLevel;
     }
 
+    public void RespawnPlant(GameObject newPlant)
+    {
+        plant = newPlant;
+        plant_tr = newPlant.GetComponent<Transform>();
+    }
+
     // Update is called once per frame
     void Update()
     {
