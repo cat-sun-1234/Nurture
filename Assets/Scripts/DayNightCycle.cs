@@ -25,6 +25,7 @@ public class DayNightCycle : MonoBehaviour
     public float moonRadius;
     [Header("Sky")]
     public SpriteRenderer sky;
+    [Header("0 is Midnight, 0.5 is midday")]
     [Range(0, 0.5f)]
     public float sunSetPoint;
     [Range(0, 0.25f)]

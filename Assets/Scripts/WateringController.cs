@@ -27,8 +27,6 @@ public class WateringController : MonoBehaviour
     public float recover1 = 10f;
     public float recover2 = 30f;
 
-    //private Transform tr;
-
     private Slider meter_sld;
     private Transform plant_tr;
     private Animator plant_anit;
@@ -47,8 +45,6 @@ public class WateringController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //tr = GetComponent<Transform> ();
-
         meter_sld = water_meter.GetComponent<Slider>();
         plant_tr = plant.GetComponent<Transform>();
 
