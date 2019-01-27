@@ -42,6 +42,7 @@ public class WateringController : MonoBehaviour
 
     private float growth = 0f;
     private float wilt = 0f;
+    private int growthLvl = 0;
 
     public float waterLevel = 20f;
 
@@ -64,7 +65,7 @@ public class WateringController : MonoBehaviour
         plant_tr = plant.GetComponent<Transform>();
 
         plant_anit = plant.GetComponent<Animator>();
-        
+
     }
 
     public void CheckGrowthThresholds()
@@ -72,11 +73,13 @@ public class WateringController : MonoBehaviour
         if (growth > stage4)
         {
             plant_anit.SetInteger("Growth", 4);
+            growthLvl = 4;
             audio.ChangeBackgroundTrack(Lvl4Music);
         }
         else if (growth > stage3)
         {
             plant_anit.SetInteger("Growth", 3);
+            growthLvl = 3;
             audio.ChangeBackgroundTrack(Lvl3Music);
         }
         else if (growth > stage2)
@@ -87,6 +90,7 @@ public class WateringController : MonoBehaviour
         else if (growth > stage1)
         {
             plant_anit.SetInteger("Growth", 1);
+            growthLvl = 1;
             audio.ChangeBackgroundTrack(Lvl1Music);
         }
         else
@@ -116,7 +120,7 @@ public class WateringController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             audio.PlaySoundEffect(waterSound);
             //Update the Text on the screen depending on current position of the touch each frame
-            print("Touch Position : " + touch.position);
+            //print("Touch Position : " + touch.position);
 
             waterLevel += fastGrow;
             if (meter_sld.value < 99f)
@@ -125,7 +129,7 @@ public class WateringController : MonoBehaviour
                 growth += fastGrow; //* energy *Time.deltaTime;
                 CheckGrowthThresholds();
             }
-        } 
+        }
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
             audio.PlaySoundEffect(waterSound);
@@ -160,18 +164,21 @@ public class WateringController : MonoBehaviour
             wilt -= 0.2f;
         }
 
-        if (wilt > wilt3)
+        if (wilt > wilt3 && growthLvl == 4)
         {
             plant_anit.SetInteger("Wilt", 3);
             wilted = true;
         }
-        else if (wilt > wilt2)
+        else if (wilt > wilt2 && growthLvl == 4)
         {
             plant_anit.SetInteger("Wilt", 2);
         }
         else if (wilt > wilt1)
         {
             plant_anit.SetInteger("Wilt", 1);
+            if (growthLvl < 4) {
+                wilt = wilt1 - 5f;
+            }
         }
         else if (wilt < recover2 && plant_anit.GetInteger("Wilt") == 2)
         {
