@@ -44,7 +44,8 @@ public class MainMenuController : MonoBehaviour
     public void SwitchToGame()
     {
         //TODO change scene name once the gameplay loop scene is finalised
-        //GetComponentInChildren<AudioSource>().Play();
+        var soundObj = FindObjectOfType<GameSession>().GetComponent<AudioSource>();
+        soundObj.Stop();
         SceneManager.LoadScene("Main");
     }
 
