@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController:MonoBehaviour
+public class AudioController : MonoBehaviour
 {
     AudioSource soundPlayer;
     AudioSource musicPlayer;
@@ -15,12 +15,11 @@ public class AudioController:MonoBehaviour
     }
     public void PlaySoundEffect(AudioClip _Sound)
     {
-        Debug.Log("Playing: " + _Sound.name);
         if (soundPlayer.clip != _Sound)
         {
             soundPlayer.clip = _Sound;
         }
-        if(!soundPlayer.isPlaying)
+        if (!soundPlayer.isPlaying)
         {
             soundPlayer.Play();
         }
@@ -31,5 +30,12 @@ public class AudioController:MonoBehaviour
         {
             musicPlayer.clip = _Track;
         }
+        Debug.Log("Playing: " + _Track.name);
+        musicPlayer.Play();
+    }
+    public void PlayBackgroundTrack()
+    {
+        Debug.Log("Playing: " + musicPlayer.clip.name);
+        musicPlayer.Play();
     }
 }
