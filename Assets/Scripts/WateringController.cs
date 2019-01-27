@@ -11,6 +11,11 @@ public class WateringController : MonoBehaviour
 
     public AudioClip waterSound;
     AudioController audio;
+    public AudioClip Lvl4Music;
+    public AudioClip Lvl3Music;
+    public AudioClip Lvl2Music;
+    public AudioClip Lvl1Music;
+    public AudioClip Lvl0Music;
 
     public GameObject water_meter;
     public GameObject plant;
@@ -67,18 +72,26 @@ public class WateringController : MonoBehaviour
         if (growth > stage4)
         {
             plant_anit.SetInteger("Growth", 4);
+            audio.ChangeBackgroundTrack(Lvl4Music);
         }
         else if (growth > stage3)
         {
             plant_anit.SetInteger("Growth", 3);
+            audio.ChangeBackgroundTrack(Lvl3Music);
         }
         else if (growth > stage2)
         {
-            plant_anit.SetInteger("Growth", 2);
+            plant_anit.SetInteger("Growth", 2); audio.ChangeBackgroundTrack(Lvl4Music);
+            audio.ChangeBackgroundTrack(Lvl2Music);
         }
         else if (growth > stage1)
         {
             plant_anit.SetInteger("Growth", 1);
+            audio.ChangeBackgroundTrack(Lvl1Music);
+        }
+        else
+        {
+            audio.ChangeBackgroundTrack(Lvl0Music);
         }
     }
 
@@ -101,7 +114,7 @@ public class WateringController : MonoBehaviour
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             Touch touch = Input.GetTouch(0);
-            audio.PlaySound(waterSound);
+            audio.PlaySoundEffect(waterSound);
             //Update the Text on the screen depending on current position of the touch each frame
             print("Touch Position : " + touch.position);
 
@@ -115,7 +128,7 @@ public class WateringController : MonoBehaviour
         } 
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
-            audio.PlaySound(waterSound);
+            audio.PlaySoundEffect(waterSound);
             waterLevel += fastGrow;
             if (meter_sld.value < 99f)
             {

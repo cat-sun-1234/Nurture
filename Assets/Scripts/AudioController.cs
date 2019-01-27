@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class AudioController:MonoBehaviour
 {
-    AudioSource aPlayer;
+    AudioSource soundPlayer;
+    AudioSource musicPlayer;
     private void Awake()
     {
-        aPlayer = GetComponent<AudioSource>();
+        soundPlayer = gameObject.AddComponent<AudioSource>();
+        musicPlayer = gameObject.AddComponent<AudioSource>();
+        musicPlayer.playOnAwake = true;
+        musicPlayer.loop = true;
     }
-    public void PlaySound(AudioClip _Sound)
+    public void PlaySoundEffect(AudioClip _Sound)
     {
         Debug.Log("Playing: " + _Sound.name);
-        if (aPlayer.clip != _Sound)
+        if (soundPlayer.clip != _Sound)
         {
-            aPlayer.clip = _Sound;
+            soundPlayer.clip = _Sound;
         }
-        if(!aPlayer.isPlaying)
+        if(!soundPlayer.isPlaying)
         {
-            aPlayer.Play();
+            soundPlayer.Play();
+        }
+    }
+    public void ChangeBackgroundTrack(AudioClip _Track)
+    {
+        if (musicPlayer.clip != _Track)
+        {
+            musicPlayer.clip = _Track;
         }
     }
 }
