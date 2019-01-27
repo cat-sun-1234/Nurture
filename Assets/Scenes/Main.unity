@@ -1229,6 +1229,7 @@ MonoBehaviour:
   wilt3: 30
   recover1: 5
   recover2: 15
+  waterLevel: 20
 --- !u!1 &1718526513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,6 +1507,7 @@ MonoBehaviour:
   wilt3: 30
   recover1: 5
   recover2: 15
+  waterLevel: 20
 --- !u!114 &1867724757
 MonoBehaviour:
   m_ObjectHideFlags: 0
