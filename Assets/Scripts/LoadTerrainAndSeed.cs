@@ -47,9 +47,9 @@ public class LoadTerrainAndSeed : MonoBehaviour
                 break;
         }
 
-        Vector2 seedPos0 = new Vector2 (0f, -2.3f);
+        Vector2 seedPos0 = new Vector2 (-0.3f, -1.1f);
         Vector2 seedPos1 = new Vector2 (0f, -2.3f);
-        Vector2 seedPos2 = new Vector2 (0f, -2.3f);
+        Vector2 seedPos2 = new Vector2 (0f, -0.4f);
         Vector2 seedPos3 = new Vector2 (-0.5f, -0.4f);
 
         switch (seedType)
