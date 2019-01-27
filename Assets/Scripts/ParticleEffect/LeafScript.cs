@@ -20,7 +20,7 @@ public class LeafScript : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + (Vector3.down + (Vector3.right * (curDir))) * fallSpeed * Time.deltaTime);
         timer += Time.deltaTime;
         transform.localScale = (Vector3.one * ((5 - timer) / 5.0f));
-        if (timer > 5)
+        if (timer > 25)
         {
             Destroy(this.gameObject);
         }
