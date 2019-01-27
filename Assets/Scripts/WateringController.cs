@@ -9,6 +9,7 @@ public class WateringController : MonoBehaviour
 {
     float energy;
 
+    [Header("Audio")]
     public AudioClip waterSound;
     AudioController audio;
     public AudioClip Lvl4Music;
@@ -57,10 +58,12 @@ public class WateringController : MonoBehaviour
     private bool wilted = false;
     private float restartCountdown = 3.0f;
 
+    private int trackPlaying = -1;
+
     // Start is called before the first frame update
     void Start()
     {
-        audio = FindObjectOfType<AudioController>();
+        //audio = FindObjectOfType<AudioController>();
         meter_sld = water_meter.GetComponent<Slider>();
         plant_tr = plant.GetComponent<Transform>();
 
@@ -74,28 +77,48 @@ public class WateringController : MonoBehaviour
         {
             plant_anit.SetInteger("Growth", 4);
             growthLvl = 4;
-            audio.ChangeBackgroundTrack(Lvl4Music);
+            AudioController.reference.ChangeBackgroundTrack(Lvl4Music);
+            if (trackPlaying != 4) {
+                AudioController.reference.ChangeTrack(4);
+                trackPlaying = 4;
+            }
         }
         else if (growth > stage3)
         {
             plant_anit.SetInteger("Growth", 3);
             growthLvl = 3;
-            audio.ChangeBackgroundTrack(Lvl3Music);
+            AudioController.reference.ChangeBackgroundTrack(Lvl3Music);
+            if (trackPlaying != 3) {
+                AudioController.reference.ChangeTrack(3);
+                trackPlaying = 3;
+            }
         }
         else if (growth > stage2)
         {
-            plant_anit.SetInteger("Growth", 2); audio.ChangeBackgroundTrack(Lvl4Music);
-            audio.ChangeBackgroundTrack(Lvl2Music);
+            plant_anit.SetInteger("Growth", 2);
+            AudioController.reference.ChangeBackgroundTrack(Lvl2Music);
+            if (trackPlaying != 2) {
+                AudioController.reference.ChangeTrack(2);
+                trackPlaying = 2;
+            }
         }
         else if (growth > stage1)
         {
             plant_anit.SetInteger("Growth", 1);
             growthLvl = 1;
-            audio.ChangeBackgroundTrack(Lvl1Music);
+            AudioController.reference.ChangeBackgroundTrack(Lvl1Music);
+            if (trackPlaying != 1) {
+                AudioController.reference.ChangeTrack(1);
+                trackPlaying = 1;
+            }
         }
         else
         {
-            audio.ChangeBackgroundTrack(Lvl0Music);
+            AudioController.reference.ChangeBackgroundTrack(Lvl0Music);
+            if (trackPlaying != 0) {
+                AudioController.reference.ChangeTrack(0);
+                trackPlaying = 0;
+            }
         }
     }
 
@@ -118,7 +141,7 @@ public class WateringController : MonoBehaviour
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             Touch touch = Input.GetTouch(0);
-            audio.PlaySoundEffect(waterSound);
+            //AudioController.reference.PlaySoundEffect(waterSound);
             //Update the Text on the screen depending on current position of the touch each frame
             //print("Touch Position : " + touch.position);
 
@@ -132,7 +155,7 @@ public class WateringController : MonoBehaviour
         }
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
-            audio.PlaySoundEffect(waterSound);
+            //AudioController.reference.PlaySoundEffect(waterSound);
             waterLevel += fastGrow;
             if (meter_sld.value < 99f)
             {
