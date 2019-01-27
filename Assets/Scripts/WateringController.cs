@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WateringController : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class WateringController : MonoBehaviour
     private float touchDX = -1f;
     private float touchDY = -1f;
 
+    private bool wilted = false;
+    private float restartCountdown = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +83,17 @@ public class WateringController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // GAME OVER
+        if (wilted)
+        {
+            restartCountdown -= Time.deltaTime;
+
+            if (restartCountdown <= 0f)
+            {
+                SceneManager.LoadScene("SelectionScene");
+            }
+        }
+
         energy = 1 + ((int)Mathf.Clamp(DayNightCycle.GetSunHeight(), 0, int.MaxValue) / 2);
 
         if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
@@ -91,7 +106,8 @@ public class WateringController : MonoBehaviour
             meter_sld.value += fastGrow;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow * energy*Time.deltaTime;
+                // Too slow for my patience, disabling this system for now. -David
+                growth += fastGrow;// * energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } 
@@ -101,14 +117,14 @@ public class WateringController : MonoBehaviour
             meter_sld.value += 0.3f;
             if (meter_sld.value < 99f)
             {
-                growth += fastGrow*energy*Time.deltaTime;
+                growth += fastGrow;// *energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } else {
             if (meter_sld.value > 0f)
             {
-                meter_sld.value -= 0.1f*energy*Time.deltaTime;
-                growth += slowGrow *energy*Time.deltaTime;
+                meter_sld.value -= 0.1f;
+                growth += slowGrow;// *energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         }
@@ -123,6 +139,7 @@ public class WateringController : MonoBehaviour
         if (wilt > wilt3)
         {
             plant_anit.SetInteger("Wilt", 3);
+            wilted = true;
         }
         else if (wilt > wilt2)
         {
@@ -140,6 +157,8 @@ public class WateringController : MonoBehaviour
         {
             plant_anit.SetInteger("Wilt", 0);
         }
+
+        print(growth + " " + wilt);
 
         if (Input.GetMouseButton(0))
         {
