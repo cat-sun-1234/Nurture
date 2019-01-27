@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b6919e423b0444aafc35c16983ff50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectSound: {fileID: 2493736405231003799, guid: 88d2a32b589c649a7b80a2382e4bedc0,
+    type: 3}
 --- !u!82 &5796715557047924973
 AudioSource:
   m_ObjectHideFlags: 0
@@ -56,7 +58,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f04dbcb25e6d455782e8d65fc37842f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a8910a417d5524fd6b65becc3f9570da, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -161,6 +163,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5796715557047924974}
     m_Modifications:
+    - target: {fileID: 2493736405231003799, guid: 88d2a32b589c649a7b80a2382e4bedc0,
+        type: 3}
+      propertyPath: m_Name
+      value: SelectSound
+      objectReference: {fileID: 0}
     - target: {fileID: 729883268114663127, guid: 88d2a32b589c649a7b80a2382e4bedc0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -215,11 +222,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2493736405231003799, guid: 88d2a32b589c649a7b80a2382e4bedc0,
-        type: 3}
-      propertyPath: m_Name
-      value: SelectSound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88d2a32b589c649a7b80a2382e4bedc0, type: 3}
