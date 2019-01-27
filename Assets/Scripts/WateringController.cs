@@ -35,6 +35,8 @@ public class WateringController : MonoBehaviour
     private float growth = 0f;
     private float wilt = 0f;
 
+    public float waterLevel = 20f;
+
     private float mouseX = -1f;
     private float mouseY = -1f;
     private float diffX = -1f;
@@ -99,17 +101,17 @@ public class WateringController : MonoBehaviour
             //Update the Text on the screen depending on current position of the touch each frame
             print("Touch Position : " + touch.position);
 
-            meter_sld.value += fastGrow;
+            waterLevel += fastGrow;
             if (meter_sld.value < 99f)
             {
                 // Too slow for my patience, disabling this system for now. -David
-                growth += fastGrow;// * energy*Time.deltaTime;
+                growth += fastGrow; //* energy *Time.deltaTime;
                 CheckGrowthThresholds();
             }
         } 
         else if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
         {
-            meter_sld.value += 0.3f;
+            waterLevel += fastGrow;
             if (meter_sld.value < 99f)
             {
                 growth += fastGrow;// *energy*Time.deltaTime;
@@ -118,13 +120,22 @@ public class WateringController : MonoBehaviour
         } else {
             if (meter_sld.value > 0f)
             {
-                meter_sld.value -= 0.1f;
+                waterLevel -= slowGrow;
                 growth += slowGrow;// *energy*Time.deltaTime;
                 CheckGrowthThresholds();
             }
         }
 
-        if (meter_sld.value < 1f)
+        if (waterLevel >= meter_sld.maxValue)
+        {
+            meter_sld.value = meter_sld.maxValue;
+        }
+        else
+        {
+            meter_sld.value = waterLevel;
+        }
+
+        if (waterLevel < 1f || waterLevel >= meter_sld.maxValue)
         {
             wilt += 0.1f;
         } else if (wilt > 0f) {
