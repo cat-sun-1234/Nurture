@@ -6,6 +6,7 @@ public class LeafFallScript : MonoBehaviour
 {
     float timer;
     public float spawnPerSecond;
+    public float spawnPosMod;
     //public ParticleSystem particles;
     public GameObject prefab;
     public Vector3 spawnPos;
@@ -28,7 +29,8 @@ public class LeafFallScript : MonoBehaviour
             if (timer >= (1 / spawnPerSecond)) 
             {
                 timer = 0;
-                Instantiate(prefab, spawnPos + (Vector3.right * (Random.Range(-10, 11) / 10.0f)), Quaternion.Euler(0, 0, 0));
+                GameObject newLeaf = Instantiate(prefab, spawnPos + (Vector3.right * ((Random.Range(-10, 11)* spawnPosMod) / 10.0f)), Quaternion.Euler(0, 0, 0));
+                newLeaf.transform.SetParent(this.transform);
             }
         }
     }
